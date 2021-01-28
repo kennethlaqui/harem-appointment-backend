@@ -23,3 +23,5 @@ Route::get('/locations', [Appointment::class, 'locations']);
 Route::get('/time/{locn_cde?}/{day_numb?}', [Appointment::class, 'time']);
 
 Route::post('/appointment/create', [Appointment::class, 'save']);
+
+Route::get('/appointments', [Appointment::class, 'appointments']);

@@ -51,9 +51,6 @@ class Appointment extends Controller
 
     public function save(Request $request)
     {
-        return $request->validate([
-            'clnt_nme' => 'required|max:100',
-        ]);
 
         $mil_time = '23:59';
         $cntrl_no = DB::table('c_appointm')
@@ -77,8 +74,19 @@ class Appointment extends Controller
                 'locn_cde' => $request->locn_cde,
                 'therapst' => $request->therapst,
                 'treatmnt' => $request->treatmnt,
-                'emailadd' => $request->emailadd
+                'emailadd' => $request->emailadd,
+                'cel_numb' => $request->cel_numb
         ]);
+
+    }
+
+    public function appointments ()
+    {
+
+        return DB::table('c_appointm')
+            ->join('c_locn_cde', 'c_locn_cde.locn_cde', '=', 'c_appointm.locn_cde')
+            ->select('c_appointm.*', 'c_locn_cde.locn_nme')
+            ->get();
 
     }
 }
