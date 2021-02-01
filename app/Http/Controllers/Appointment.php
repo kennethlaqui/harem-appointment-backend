@@ -59,7 +59,7 @@ class Appointment extends Controller
     {
 
         return DB::table('c_appointm')
-            ->where('c_locn_cde', $request->stor_nme)
+            ->where('c_locn_cde.stor_nme', $request->stor_nme)
             ->join('c_locn_cde', 'c_locn_cde.locn_cde', '=', 'c_appointm.locn_cde')
             ->select('c_appointm.*', 'c_locn_cde.locn_nme')
             ->orderBy('cntrl_no', 'DESC')
