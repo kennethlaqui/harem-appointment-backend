@@ -19,9 +19,13 @@ use App\Http\Controllers\Appointment;
 //     return $request->user();
 // });
 
-Route::get('/locations', [Appointment::class, 'locations']);
+// Store Name (stor_nme) :
+// strip
+// browhaus
+
+Route::get('/locations/{stor_nme?}', [Appointment::class, 'locations']);
 Route::get('/time/{locn_cde?}/{day_numb?}', [Appointment::class, 'time']);
 
 Route::post('/appointment/create', [Appointment::class, 'save']);
 
-Route::get('/appointments', [Appointment::class, 'appointments']);
+Route::get('/appointments/{stor_nme?}', [Appointment::class, 'appointments']);
