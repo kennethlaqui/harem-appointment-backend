@@ -50,7 +50,8 @@ class Appointment extends Controller
                 'treatmnt' => $request->treatmnt,
                 'emailadd' => $request->emailadd,
                 'cel_numb' => $request->cel_numb,
-                'location' => get_ip_location()
+                'log_locn' => get_ip_location(),
+                'stor_nme' => $request->stor_nme
         ]);
 
     }
