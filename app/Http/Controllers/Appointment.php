@@ -24,12 +24,13 @@ class Appointment extends Controller
     {
 
         return DB::table('c_validtme')
+            ->select('mil_time', 'std_time')
             ->where('locn_cde', $request->locn_cde)
             ->where('day_numb', $request->day_numb)
-            ->select('mil_time', 'std_time')
             ->get();
 
     }
+
 
     public function save(Request $request)
     {
