@@ -4,6 +4,9 @@
 
 function get_local_time(){
 
+    return $timezone = "GMT+8";
+
+    // do not use
     $ip = @file_get_contents("http://ipecho.net/plain");
 
     if ($ip === false) { return $timezone = "GMT+8"; }
