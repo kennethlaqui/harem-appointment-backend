@@ -35,23 +35,20 @@ class Appointment extends Controller
     public function save(Request $request)
     {
 
-        $cntrl_no = $this->maximum_control_number();
+        // $cntrl_no = $this->maximum_control_number();
 
         DB::table('c_appointm')
             ->insert([
-                'cntrl_no' => $cntrl_no,
                 'log_date' => Carbon::now(get_local_time()),
                 'log_time' => Carbon::now(get_local_time())->isoFormat('HH:mm'),
                 'clnt_nme' => $request->clnt_nme,
                 'apnt_dte' => $request->apnt_dte,
-                'apnt_tme' => '09:00 AM',
                 'mil_time' => $request->apnt_tme,
                 'locn_cde' => $request->locn_cde,
                 'therapst' => $request->therapst,
                 'treatmnt' => $request->treatmnt,
                 'emailadd' => $request->emailadd,
                 'cel_numb' => $request->cel_numb,
-                'log_locn' => get_ip_location(),
                 'stor_nme' => $request->stor_nme
         ]);
 
