@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Redis;
 use DB;
 use Carbon\Carbon;
 
@@ -12,11 +13,19 @@ class Appointment extends Controller
     public function locations (Request $request)
     {
 
-        return DB::table('c_locn_cde')
+        if ($locations = Redis::get($request->stor_nme)) {
+            return json_decode($locations);
+        }
+
+        $locations = DB::table('c_locn_cde')
             ->select('locn_cde', 'locn_nme')
             ->where('stor_nme', $request->stor_nme)
             ->distinct()
             ->get();
+
+        Redis::set($request->stor_nme, $locations);
+
+        return $locations;
 
     }
 
@@ -50,7 +59,7 @@ class Appointment extends Controller
                 'emailadd' => $request->emailadd,
                 'cel_numb' => $request->cel_numb,
                 'stor_nme' => $request->stor_nme
-        ]);
+            ]);
 
     }
 
