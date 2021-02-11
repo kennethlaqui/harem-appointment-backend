@@ -13,9 +13,9 @@ class Appointment extends Controller
     public function locations (Request $request)
     {
 
-        if ($locations = Redis::get($request->stor_nme)) {
-            return json_decode($locations);
-        }
+        // if ($locations = Redis::get($request->stor_nme)) {
+        //     return json_decode($locations);
+        // }
 
         $locations = DB::table('c_locn_cde')
             ->select('locn_cde', 'locn_nme')
@@ -23,7 +23,7 @@ class Appointment extends Controller
             ->distinct()
             ->get();
 
-        Redis::set($request->stor_nme, $locations);
+        // Redis::set($request->stor_nme, $locations);
 
         return $locations;
 
@@ -39,7 +39,6 @@ class Appointment extends Controller
             ->get();
 
     }
-
 
     public function save(Request $request)
     {
