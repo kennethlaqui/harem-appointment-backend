@@ -13,19 +13,11 @@ class Appointment extends Controller
     public function locations (Request $request)
     {
 
-        // if ($locations = Redis::get($request->stor_nme)) {
-        //     return json_decode($locations);
-        // }
-
-        $locations = DB::table('c_locn_cde')
+        return DB::table('c_locn_cde')
             ->select('locn_cde', 'locn_nme')
             ->where('stor_nme', $request->stor_nme)
             ->distinct()
             ->get();
-
-        // Redis::set($request->stor_nme, $locations);
-
-        return $locations;
 
     }
 
@@ -42,8 +34,6 @@ class Appointment extends Controller
 
     public function save(Request $request)
     {
-
-        // $cntrl_no = $this->maximum_control_number();
 
         DB::table('c_appointm')
             ->insert([
@@ -74,17 +64,4 @@ class Appointment extends Controller
 
     }
 
-    public function maximum_control_number ()
-    {
-
-        $cntrl_no = DB::table('c_appointm')
-            ->max('cntrl_no');
-
-        if (is_null($cntrl_no)){
-            $cntrl_no=0;
-        }
-
-        return $cntrl_no += 1;
-
-    }
 }
