@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Redis;
 use DB;
 use Carbon\Carbon;
 
-class Appointment extends Controller
+class AppointmentController extends Controller
 {
     public function locations (Request $request)
     {

@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Appointment;
+use App\Http\Controllers\AppointmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,9 +24,9 @@ use App\Http\Controllers\Appointment;
 // strip
 // browhaus
 
-Route::get('/locations/{stor_nme?}', [Appointment::class, 'locations']);
-Route::get('/time/{locn_cde?}/{day_numb?}', [Appointment::class, 'time']);
+Route::get('/locations/{stor_nme?}', [AppointmentController::class, 'locations']);
+Route::get('/time/{locn_cde?}/{day_numb?}', [AppointmentController::class, 'time']);
 
-Route::post('/appointment/create', [Appointment::class, 'save']);
+Route::post('/appointment/create', [AppointmentController::class, 'save']);
 
-Route::get('/appointments/{stor_nme?}', [Appointment::class, 'appointments']);
+Route::get('/appointments/{stor_nme?}', [AppointmentController::class, 'appointments']);

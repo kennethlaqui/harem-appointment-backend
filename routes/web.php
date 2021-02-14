@@ -17,10 +17,3 @@ use App\Http\Controllers\Appointment;
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get('/name', function () {
-    return view('example', ['name' => 'Samantha']);
-});
-
-Route::get('/locations', [Appointment::class, 'locations']);
-Route::get('/validtime', [Appointment::class, 'validTime']);
